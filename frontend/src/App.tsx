@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import Navbar from "./components/layout/Navbar";
 import Leftbar from "./components/layout/Leftbar";
+import Rightbar from "./components/layout/Rightbar";
 import Leaderboard from "./pages/Leaderboard";
 
 function App() {
@@ -12,14 +12,14 @@ function App() {
   }
   return (
     <div
-      className={`min-h-screen w-screen  bg-(--color-bg-primary) ${theme ? "dark" : ""}`}
+      className={`min-h-screen flex w-screen  bg-(--color-bg-primary) ${theme ? "dark" : ""}`}
     >
-      <Navbar onThemeToggle={toggleTheme} isDarkTheme={theme} />
-      <div className="flex ">
-        <Leftbar />
+      <Leftbar onThemeToggle={toggleTheme} isDarkTheme={theme} />
+      <div className="flex  ">
         <div className="w-full">
           <Leaderboard />
         </div>
+        <Rightbar />
       </div>
     </div>
   );
