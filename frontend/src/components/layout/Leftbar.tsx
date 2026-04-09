@@ -43,7 +43,10 @@ function Navbar({ onThemeToggle, isDarkTheme = false }: Props) {
         </nav>
 
         <div className="flex flex-col  justify-end flex-1 p-8 gap-4">
-          <div className="rounded-md flex justify-between p-2 cursor-pointer border border-(--color-border) text-orange-500 transition-colors hover:bg-orange-500/10">
+          <div
+            onClick={onThemeToggle}
+            className="rounded-md flex justify-between p-2 cursor-pointer border border-(--color-border) text-orange-500 transition-colors hover:bg-orange-500/10"
+          >
             {isDarkTheme ? (
               <svg
                 className="h-5 w-5"
@@ -64,7 +67,6 @@ function Navbar({ onThemeToggle, isDarkTheme = false }: Props) {
               </svg>
             )}
             <button
-              onClick={onThemeToggle}
               className={`w-9 h-5   flex items-center cursor-pointer relative rounded-4xl ${isDarkTheme ? "bg-orange-500" : "bg-gray-400"}`}
             >
               <div
