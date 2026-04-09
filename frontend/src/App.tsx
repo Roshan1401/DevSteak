@@ -12,14 +12,20 @@ function App() {
   }
   return (
     <div
-      className={`min-h-screen flex w-screen  bg-(--color-bg-primary) ${theme ? "dark" : ""}`}
+      className={`min-h-screen w-full bg-(--color-bg-primary) ${theme ? "dark" : ""}`}
     >
-      <Leftbar onThemeToggle={toggleTheme} isDarkTheme={theme} />
-      <div className="flex  ">
-        <div className="w-full">
+      <div className="flex min-h-screen w-full">
+        <div className="sticky top-0 h-screen shrink-0 overflow-hidden">
+          <Leftbar onThemeToggle={toggleTheme} isDarkTheme={theme} />
+        </div>
+
+        <div className="min-w-0 flex-1">
           <Leaderboard />
         </div>
-        <Rightbar />
+
+        <div className="sticky top-0 h-screen shrink-0 overflow-hidden">
+          <Rightbar />
+        </div>
       </div>
     </div>
   );

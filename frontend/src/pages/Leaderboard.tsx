@@ -109,6 +109,72 @@ const sampleData: LeaderboardUser[] = [
       { name: "C++", color: "#f34b7d" },
     ],
   },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
+  {
+    rank: 5,
+    name: "Morgan Lee",
+    avatar: "ML",
+    timeSpent: "17h 30m",
+    streak: 12,
+    languages: [
+      { name: "Java", color: "#b07219" },
+      { name: "C++", color: "#f34b7d" },
+    ],
+  },
 ];
 
 function Leaderboard() {
@@ -131,7 +197,7 @@ function Leaderboard() {
   };
 
   return (
-    <div className="py-5 px-15 h-full">
+    <div className="px-15 py-5">
       <div className="flex items-center my-3 justify-center">
         <div className="inline-flex gap-2 items-center rounded-4xl bg-neutral-900 justify-center px-5 py-1 border border-(--color-border)">
           {(["24 Hours", "7 Days", "30 Days"] as const).map((day) => (
@@ -161,7 +227,7 @@ function Leaderboard() {
               </span>
             </div>
           </div>
-          <div className="max-h-[calc(100vh-270px)] overflow-y-auto">
+          <div className="">
             <div className="grid grid-cols-12 px-6 py-4 gap-4 text-md tracking-wide text-(--color-text-secondary) font-semibold sticky top-0 bg-(--color-bg-secondary) z-10">
               <div className="col-span-1">Rank</div>
               <div className="col-span-4">Developer</div>
@@ -169,7 +235,7 @@ function Leaderboard() {
               <div className="col-span-3 text-left">Top Languages</div>
               <div className="col-span-1 text-center">Streak</div>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 ">
               {sampleData.map((user) => {
                 const badge = getRankBadge(user.rank);
                 const streakStyle = getStreakColor(user.streak);
@@ -178,7 +244,7 @@ function Leaderboard() {
                     key={user.rank}
                     className="border-t border-(--color-border)"
                   >
-                    <div className="grid grid-cols-12 px-6 gap-4 items-center  py-3  hover:bg-(--color-bg-secondary) transition-colors cursor-pointer">
+                    <div className="grid grid-cols-12  px-6 gap-4 items-center  py-3  hover:bg-(--color-bg-secondary) transition-colors cursor-pointer">
                       <div className="col-span-1 flex">
                         <span
                           className={`w-10 h-10 rounded-lg ${badge.bg} ${badge.text} flex items-center justify-center text-lg font-bold`}
