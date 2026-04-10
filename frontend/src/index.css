@@ -14,6 +14,7 @@
   --color-text-primary: #0b0b0b;
   --color-text-secondary: #6c6f77;
   --color-border: #dbdde3;
+  --color-border-secondary: #dbdde3;
   --color-surface: #ffffff;
 }
 
@@ -23,5 +24,6 @@
   --color-text-primary: #ffffff;
   --color-text-secondary: #9d9e9fdc;
   --color-border: #232323;
+  --color-border-secondary: #333333;
   --color-surface: #0b0b0b;
 }
