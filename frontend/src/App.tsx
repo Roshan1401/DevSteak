@@ -3,6 +3,7 @@ import { useState } from "react";
 import Leftbar from "./components/layout/Leftbar";
 import Rightbar from "./components/layout/Rightbar";
 import Leaderboard from "./pages/Leaderboard";
+import Profile from "./pages/Profile";
 
 function App() {
   const [theme, setTheme] = useState(false);
@@ -20,7 +21,8 @@ function App() {
         </div>
 
         <div className="min-w-0 flex-1">
-          <Leaderboard />
+          {/* <Leaderboard /> */}
+          <Profile />
         </div>
 
         <div className="sticky top-0 h-screen shrink-0 overflow-hidden">
