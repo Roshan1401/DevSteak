@@ -2,11 +2,11 @@ import profilImg from "../../assets/image.png";
 
 interface Props {}
 
-function Leftbar(props: Props) {
+function Rightbar(props: Props) {
   const {} = props;
 
   return (
-    <div className="flex flex-col gap-6 border-l border-(--color-border) bg-(--color-bg-primary) py-4 px-6">
+    <div className="flex flex-col min-h-screen gap-6 border-l border-(--color-border) bg-(--color-bg-primary) py-4 px-6">
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="size-25 rounded-full border border-orange-400 dark:border-black  overflow-hidden">
           <img
@@ -33,7 +33,7 @@ function Leftbar(props: Props) {
           Today's Activity
         </h3>
         <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-md hover:border-orange-400 border border-(--color-border) bg-(--color-bg-secondary) p-3">
+          <div className="rounded-md size-30 hover:border-orange-400 border border-(--color-border) bg-(--color-bg-secondary) p-2">
             <div className="text-xs text-(--color-text-secondary) uppercase tracking-wider">
               Rank
             </div>
@@ -122,20 +122,36 @@ function Leftbar(props: Props) {
           </button>
         </div>
 
-        <button className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-(--color-border) bg-(--color-bg-primary) px-3 py-2 text-sm text-orange-500 font-medium  transition-colors hover:border-orange-500/60  active:border-orange-500 active:bg-orange-500/20 active:text-orange-100">
-          <svg
+        <button className="flex cursor-pointer items-center justify-center gap-2 rounded-md border border-(--color-border) bg-(--color-bg-primary) px-3 py-2 text-sm text-orange-500 font-bold  transition-colors hover:border-orange-500/60  active:border-orange-500 active:bg-orange-500/20 active:text-orange-100">
+          {/* <svg
             className="h-4 w-4"
             fill="currentColor"
-            viewBox="0 0 24 2   4"
+            viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H3V5h12v4z" />
+            <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+          </svg> */}
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="h-5 w-5 "
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              fill="none"
+              d="M13 12h9m0 0l-3.333-4M22 12l-3.333 4M14 7V5.174a2 2 0 0 0-2.166-1.993l-8 .666A2 2 0 0 0 2 5.84v12.32a2 2 0 0 0 1.834 1.993l8 .667A2 2 0 0 0 14 18.826V17"
+            />
           </svg>
-          <span>Sign out</span>
+          <span>Sign Out</span>
         </button>
       </div>
     </div>
   );
 }
 
-export default Leftbar;
+export default Rightbar;
