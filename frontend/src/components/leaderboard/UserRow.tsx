@@ -7,7 +7,18 @@ import { formatTime } from "../../utils/formatTime";
 import type { LeaderboardUser } from "../../types/types";
 import You from "../You";
 import UserHoverCard from "./UserHoverCard";
-import { useFloating, offset, flip, shift } from "@floating-ui/react";
+import { safePolygon } from "@floating-ui/react";
+import {
+  useFloating,
+  offset,
+  flip,
+  shift,
+  useHover,
+  useInteractions,
+  FloatingPortal,
+} from "@floating-ui/react";
+
+import { useState } from "react";
 
 interface UserRowProps {
   user: LeaderboardUser;
@@ -24,11 +35,33 @@ function UserRow({
   openDropdown,
   setOpenDropdown,
 }: UserRowProps) {
-  const { refs, floatingStyles } = useFloating({
+  const {
+    refs: hoverRefs,
+    floatingStyles: hoverStyles,
+    context: cardContext,
+  } = useFloating({
     placement: "bottom-start",
     middleware: [offset(10), flip(), shift()],
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const {
+    refs: languageRefs,
+    floatingStyles: languageStyles,
+    context: languageContext,
+  } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    placement: "bottom-end",
+    middleware: [offset(8), flip(), shift({ padding: 8 })],
+  });
+
+  const hover = useHover(languageContext, {
+    handleClose: safePolygon(),
+  });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
   return (
     <>
       <div
@@ -80,7 +113,7 @@ function UserRow({
                       : user.name}
                   </span>
                   <div
-                    ref={refs.setReference}
+                    ref={hoverRefs.setReference}
                     className="group relative hidden items-center gap-2 md:flex"
                   >
                     <span className="hidden cursor-pointer md:inline">
@@ -88,16 +121,16 @@ function UserRow({
                     </span>
                     {isCurrentUser && <You />}
                     <div
-                      ref={refs.setFloating}
-                      style={floatingStyles}
+                      ref={hoverRefs.setFloating}
+                      style={hoverStyles}
                       className="pointer-events-none z-50 scale-95 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100"
                     >
                       {user.username && (
-                      <UserHoverCard
-                        rank={user.rank}
-                        username={user.username}
-                      />
-                    )}
+                        <UserHoverCard
+                          rank={user.rank}
+                          username={user.username}
+                        />
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -168,32 +201,45 @@ function UserRow({
               </div>
             ))}
             {user.byLanguage.length > 3 && (
-              <div className="group relative">
-                <span className="flex h-9 w-8.5 cursor-pointer items-center justify-center rounded-md border border-(--color-border) bg-(--color-bg-secondary) text-xs font-semibold text-(--color-text-secondary)">
+              <div>
+                <span
+                  ref={languageRefs.setReference}
+                  {...getReferenceProps()}
+                  className="flex h-9 w-8.5 cursor-pointer items-center justify-center rounded-md border border-(--color-border) bg-(--color-bg-secondary) text-xs font-semibold text-(--color-text-secondary)"
+                >
                   +{user.byLanguage.length - 3}
                 </span>
 
-                <div className="absolute top-12 right-0 z-50 hidden min-w-36 rounded-lg border border-(--color-border) bg-(--color-bg-primary) p-2 shadow-xl group-hover:block">
-                  {user.byLanguage.slice(3).map((lang, i) => (
+                {isOpen && (
+                  <FloatingPortal>
                     <div
-                      key={i}
-                      className="flex items-center gap-2 rounded-md px-2 py-1 text-sm"
+                      ref={languageRefs.setFloating}
+                      style={languageStyles}
+                      {...getFloatingProps()}
+                      className="z-50 min-w-36 rounded-lg border border-(--color-border) bg-(--color-bg-primary) p-2 shadow-xl"
                     >
-                      <span
-                        style={{
-                          color: getLanguageColor(lang.language),
-                        }}
-                        className="text-lg"
-                      >
-                        {getLanguageIcon(lang.language)}
-                      </span>
+                      {user.byLanguage.slice(3).map((lang, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm"
+                        >
+                          <span
+                            style={{
+                              color: getLanguageColor(lang.language),
+                            }}
+                            className="text-lg"
+                          >
+                            {getLanguageIcon(lang.language)}
+                          </span>
 
-                      <span className="text-(--color-text-primary)">
-                        {lang.language}
-                      </span>
+                          <span className="text-(--color-text-primary)">
+                            {lang.language}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </FloatingPortal>
+                )}
               </div>
             )}
           </div>

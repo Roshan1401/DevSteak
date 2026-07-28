@@ -5,7 +5,7 @@ import LeaderboardSkeleton from "../Skeletons/LeaderboardSkeleton";
 import type { Range, LeaderboardUser } from "../types/types";
 import { fetchActivity } from "../queries/fetchActivity";
 import useProfileStore from "../store/useProfileStore";
-import UserRow from "../components/leaderboard/UserRow";
+import UserRow from "../components/leaderboard/UserRow/UserRow";
 import useUserStore from "../store/useUserStore";
 
 function Leaderboard() {
@@ -118,7 +118,8 @@ function Leaderboard() {
                         No developers yet
                       </p>
                       <p className="text-sm text-(--color-text-secondary)">
-                        No coding activity recorded for this time range. Start coding to claim the top spot!
+                        No coding activity recorded for this time range. Start
+                        coding to claim the top spot!
                       </p>
                     </div>
                   ) : (
@@ -132,18 +133,20 @@ function Leaderboard() {
                           setOpenDropdown={setOpenDropdown}
                         />
                       )}
-                      {otherUsers.map((user: LeaderboardUser, index: number) => {
-                        return (
-                          <UserRow
-                            user={user}
-                            index={index}
-                            key={user.username || index}
-                            isCurrentUser={false}
-                            openDropdown={openDropdown}
-                            setOpenDropdown={setOpenDropdown}
-                          />
-                        );
-                      })}
+                      {otherUsers.map(
+                        (user: LeaderboardUser, index: number) => {
+                          return (
+                            <UserRow
+                              user={user}
+                              index={index}
+                              key={user.username || index}
+                              isCurrentUser={false}
+                              openDropdown={openDropdown}
+                              setOpenDropdown={setOpenDropdown}
+                            />
+                          );
+                        },
+                      )}
                     </>
                   )}
                 </div>
