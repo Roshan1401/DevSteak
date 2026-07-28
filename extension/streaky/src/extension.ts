@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
+import * as path from "path";
 import * as dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
 
 import { supabase } from "./lib/supabase";
 import { startTracking } from "./tracker";
@@ -23,10 +24,14 @@ export async function activate(context: vscode.ExtensionContext) {
   if (token && user_id) {
     globalUserId = user_id;
 
-    await supabase
-      .from("profiles")
-      .update({ is_extension_active: true })
-      .eq("id", user_id);
+    try {
+      await supabase
+        .from("profiles")
+        .update({ is_extension_active: true })
+        .eq("id", user_id);
+    } catch (e) {
+      console.error("Failed to update profile:", e);
+    }
 
     startTracking(context);
     startSendingSessions(context);

@@ -30,6 +30,8 @@ export async function startSendingSessions(context: vscode.ExtensionContext) {
         );
 
         if (error) {
+          console.error("Failed to send sessions:", error);
+          vscode.window.showErrorMessage("Failed to send sessions: " + error.message);
           return;
         }
 
