@@ -12,6 +12,7 @@ interface ProfileState {
     country: string | null;
     state: string | null;
     city: string | null;
+    joined_at: string;
   } | null;
   socialLinks: {
     platform: string;
