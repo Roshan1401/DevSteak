@@ -232,8 +232,8 @@ function ProfileHeader({ profileData }: ProfileHeaderProps) {
               <Calendar className="h-4 w-4 text-(--color-text-secondary) md:h-5 md:w-5" />
               <span className="text-md ml-1 flex items-center text-center text-(--color-text-secondary) md:text-lg">
                 Joined{" "}
-                {profile?.joined_at &&
-                  new Date(profile.joined_at).toLocaleDateString(undefined, {
+                {profile?.created_at &&
+                  new Date(profile.created_at).toLocaleDateString(undefined, {
                     year: "numeric",
                     month: "long",
                   })}
