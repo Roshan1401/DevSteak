@@ -28,9 +28,14 @@ async function fetchGlobalRankings(
     period_filter: period,
     country_filter: country && country !== "all" ? country : null,
   });
-
+  console.log("Hello");
   if (error) {
-    console.error("Error fetching global rankings: ", error);
+    console.log("Hello");
+    console.error("RPC ERROR:", error);
+    console.error("RPC ERROR MESSAGE:", error.message);
+    console.error("RPC ERROR DETAILS:", error.details);
+    console.error("RPC ERROR HINT:", error.hint);
+    // console.error("Error fetching global rankings: ", error.message);
     throw new Error(error.message);
   }
   return data as RankUser[];

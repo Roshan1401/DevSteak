@@ -6,8 +6,11 @@ interface CountryFlagProps {
 }
 
 export function CountryFlag({ countryName }: CountryFlagProps) {
+  if (!countryName) {
+    return null;
+  }
   const match = Country.getAllCountries().find(
-    (country) => country.name.toLowerCase() === countryName.toLowerCase(),
+    (country) => country?.name?.toLowerCase() === countryName?.toLowerCase(),
   );
 
   if (!match) return null;
